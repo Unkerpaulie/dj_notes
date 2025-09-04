@@ -1,0 +1,41 @@
+{% extends "_base.html" %}
+
+{% block title %}{{ page_name }}{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        {% for note in notes %}
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ note.title }}</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary">{{ note.topic }}</h6>
+              <p class="card-text">{{ note.body|truncatechars:40 }}</p>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-4">
+        <a class="btn btn-primary mb-3" href="{% url "new_note" %}" role="button">New Note</a>
+        <div class="accordion" id="topicsAccordian">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#topicsCollapse" aria-expanded="true" aria-controls="topicsCollapse">
+                    Topics
+                    </button>
+                </h2>
+                <div id="topicsCollapse" class="accordion-collapse collapse show" data-bs-parent="#topicsAccordian">
+                    <div class="accordion-body">
+                        <div class="list-group">
+                            {% for topic in topics %}
+                            <a href="#" class="list-group-item list-group-item-action">{{ topic.name }}</a>
+                            {% endfor %}
+                            <a href="#" class="list-group-item list-group-item-action active">New Topic</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+{% endblock content %}

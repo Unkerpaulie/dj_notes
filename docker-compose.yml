@@ -1,0 +1,10 @@
+name: dj_notes_project
+
+services:
+  app:
+    image: notes-app:1.0
+    container_name: dj_notes_service
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app

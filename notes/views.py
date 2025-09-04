@@ -30,7 +30,6 @@ def new_note(req):
         print(list(req.POST.keys()))
     return render(req, "new_note.html", context)
 
-
 def edit_note(req):
     context = {"page_name": "Edit Note"}
     return render(req, "edit_note.html", context)
