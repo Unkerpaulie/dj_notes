@@ -7,7 +7,7 @@ def home(req):
     notes = Note.objects.all()
     topics = Topic.objects.all()
     context |= {"notes": notes, "topics": topics}
-    return render(req, "home.html", context)
+    return render(req, "old/home.html", context)
 
 def new_topic(req):
     context = {"page_name": "New Note"}
@@ -28,7 +28,7 @@ def new_note(req):
     context |= {"notes": notes, "topics": topics}
     if req.method == "POST":
         print(list(req.POST.keys()))
-    return render(req, "new_note.html", context)
+    return render(req, "old/new_note.html", context)
 
 def edit_note(req):
     context = {"page_name": "Edit Note"}

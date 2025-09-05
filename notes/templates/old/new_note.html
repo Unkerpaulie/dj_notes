@@ -1,0 +1,38 @@
+{% extends "old/base.html" %}
+
+{% block title %}{{ page_name }}{% endblock title %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <select class="form-select" name="topic">
+            <option selected>Select a topic</option>
+            {% for topic in topics %}
+            <option value="{{ topic.id }}">{{ topic.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Note Title</label>
+    <input type="text" class="form-control" name="title">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Note body</label>
+        <textarea class="form-control" name="body" rows="6"></textarea>
+    </div>
+    <div class="form-check bd-example">
+        <div class="overflow-auto">
+            <h5>Related Notes</h5>
+            {% for note in notes %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{ note.id }}" id="note_{{ note.id }}" name="note_{{ note.id }}">
+                <label class="form-check-label" for="note_{{ note.id }}">{{ note.title }}</label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Submit">
+
+</form>
+{% endblock content %}
